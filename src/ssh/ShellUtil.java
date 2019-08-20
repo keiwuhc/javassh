@@ -6,6 +6,7 @@ import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UserInfo;
 
 import java.io.*;
+import java.util.Properties;
 
 public class ShellUtil {
     private Session session = null;
@@ -25,9 +26,17 @@ public class ShellUtil {
     public void connect(String host, int port, String user, String password) throws Exception {
         JSch jsch = new JSch();
         session = jsch.getSession(user, host, port);
+
+        //指令通道方式
+//        Properties config = new Properties();
+//        config.put("StrictHostKeyChecking","no");
+//        session.setConfig(config);
+
+        //密码方式
         session.setPassword(password);
         UserInfo ui = new ShellUserInfo();
         session.setUserInfo(ui);
+
         session.connect(30000);   // making a connection with timeout.
         channel = session.openChannel("shell");
         pos = new PipedOutputStream();
