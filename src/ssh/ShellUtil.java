@@ -54,13 +54,22 @@ public class ShellUtil {
      */
     public String command(String command) throws Exception {
         pos.write(command.getBytes());
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
         BufferedReader reader = new BufferedReader(new InputStreamReader(bais, "UTF-8"));
         String line = null;
         StringBuffer sb = new StringBuffer();
         while ((line = reader.readLine()) != null) {
-            sb.append(new String(line.getBytes("UTF-8"),"UTF-8"));
+            String temp = new String(line.getBytes("UTF-8"),"UTF-8");
+            if (temp != null && !"".equals(temp)) {
+                String spacebar = " ";
+                int spacebarIndex = temp.length() -1;
+                String lastchar = temp.substring(spacebarIndex);
+                if (spacebar.equals(lastchar)) {
+                    temp = temp.substring(0,spacebarIndex);
+                }
+            }
+            sb.append(temp);
             sb.append("\n");
         }
         return sb.toString();
