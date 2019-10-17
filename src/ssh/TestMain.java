@@ -8,7 +8,7 @@ public class TestMain {
 
         String user = "root";
         String password = "wuqi5678";
-        String host = "192.168.129.130";
+        String host = "192.168.153.131";
         int port = 22;
         String command = "grep -v -e '!' -e '*' /etc/shadow|awk -F \":\" '{print \"HASH=\"$1\",\"$2\",\"$3\";\"}'";
         ShellUtil su = new ShellUtil();

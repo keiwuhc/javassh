@@ -54,7 +54,7 @@ public class ShellUtil {
      */
     public String command(String command) throws Exception {
         pos.write(command.getBytes());
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
         BufferedReader reader = new BufferedReader(new InputStreamReader(bais, "UTF-8"));
         String line = null;
